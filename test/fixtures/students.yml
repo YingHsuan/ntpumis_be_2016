@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stu_no: MyString
+  stu_name: MyString
+  grade: 1
+  gender: 1
+  address: MyString
+  tel: MyString
+  mobile: MyString
+  email: MyString
+  supervisor1: 1
+  supervisor2: 1
+  is_graduated: false
+  job_organization: MyString
+  job: 
+
+two:
+  stu_no: MyString
+  stu_name: MyString
+  grade: 1
+  gender: 1
+  address: MyString
+  tel: MyString
+  mobile: MyString
+  email: MyString
+  supervisor1: 1
+  supervisor2: 1
+  is_graduated: false
+  job_organization: MyString
+  job: 
