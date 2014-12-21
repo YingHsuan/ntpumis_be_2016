@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   # resources :thesis
-  get 'thesis/list' => 'thesis#list'
+  # get 'thesis/list' => 'thesis#list'
+  post 'thesis/list' => 'thesis#list'
+  post 'thesis/create' => 'thesis#create'
+  post 'thesis/detail/:thesisId' => 'thesis#detail'
+
+  # teacher routes
+  post 'teacher/list' => 'teacher#list'
+  post 'teacher/list/create' => 'teacher#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

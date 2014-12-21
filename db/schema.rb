@@ -11,7 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215141706) do
+ActiveRecord::Schema.define(version: 20141221135042) do
+
+  create_table "students", force: true do |t|
+    t.string   "stu_no"
+    t.string   "stu_name"
+    t.integer  "grade"
+    t.integer  "gender"
+    t.string   "address"
+    t.string   "tel"
+    t.string   "mobile"
+    t.string   "email"
+    t.integer  "supervisor1"
+    t.integer  "supervisor2"
+    t.boolean  "is_graduated"
+    t.string   "job_organization"
+    t.string   "job_title"
+    t.string   "job_industry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.string   "name_c"
+    t.string   "name_e"
+    t.string   "office_c"
+    t.string   "office_e"
+    t.text     "domain_c"
+    t.text     "domain_e"
+    t.string   "degree_c"
+    t.string   "degree_e"
+    t.string   "title_c"
+    t.string   "title_e"
+    t.integer  "title_priority"
+    t.boolean  "is_chair"
+    t.string   "email"
+    t.string   "tel"
+    t.string   "extension"
+    t.integer  "employ_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "theses", force: true do |t|
     t.string   "name_c"
@@ -21,6 +61,7 @@ ActiveRecord::Schema.define(version: 20141215141706) do
     t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "conference"
   end
 
 end
