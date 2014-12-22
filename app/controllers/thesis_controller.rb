@@ -19,7 +19,8 @@ class ThesisController < ApplicationController
             :name_e => thesis.name_e,
             :year => thesis.year,
             :student_id => thesis.student_id,
-            :teacher_id => thesis.teacher_id
+            :teacher_id => thesis.teacher_id,
+            :conference => thesis.conference
 
           }
         )
@@ -40,6 +41,7 @@ class ThesisController < ApplicationController
       thesis.year = data['year']
       thesis.student_id = data['student_id']
       thesis.teacher_id = data['teacher_id']
+      thesis.conference = data['conference']
       thesis.save!   
     end
     result = 
@@ -66,7 +68,8 @@ class ThesisController < ApplicationController
             :name_e => thesis.name_e,
             :year => thesis.year,
             :student_id => thesis.student_id,
-            :teacher_id => thesis.teacher_id
+            :teacher_id => thesis.teacher_id,
+            :conference => thesis.conference
       }
 
       render :json => data
