@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post 'thesis/list' => 'thesis#list'
   post 'thesis/create' => 'thesis#create'
   post 'thesis/detail/:thesisId' => 'thesis#detail'
+  post 'thesis/update/:thesisId' => 'thesis#update'
+  post 'thesis/delete/:thesisId' => 'thesis#delete'
 
   # teacher routes
   post 'teacher/list' => 'teacher#list'

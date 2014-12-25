@@ -61,7 +61,6 @@ class ThesisController < ApplicationController
               },
              :status => 400
     else
-      thesis = Thesis.find_by_id(params[:thesisId])
       data = {
             :id => thesis.id,
             :name_c => thesis.name_c,
@@ -75,6 +74,48 @@ class ThesisController < ApplicationController
       render :json => data
     end
   end
+
+  def update
+    thesis = Thesis.find_by_id(params[:thesisId])
+    if thesis.nil?
+      render :json => {
+                  :error => 'Bad request'
+              },
+             :status => 400
+    else
+      data = JSON.parse(request.body.read)
+      puts data.to_s
+
+      thesis.name_c = data['name_c']
+      thesis.name_e = data['name_e']
+      thesis.year = data['year']
+      thesis.student_id = data['student_id']
+      thesis.teacher_id = data['teacher_id']
+      thesis.conference = data['conference']
+      thesis.save!   
+      
+      render :json =>{
+        :id => thesis.id
+      }
+    end
+  end
+  def delete
+    thesis = Thesis.find_by_id(params[:thesisId])
+    if thesis.nil?
+      render :json => {
+                  :error => 'Bad request'
+              },
+             :status => 400
+    else
+      puts "Thesis_ id :#{thesis.id} DELETED"
+      thesis.destroy
+      render :json =>{
+        :status => "success"
+      }
+    end
+  end
+
+
 end
 
 
