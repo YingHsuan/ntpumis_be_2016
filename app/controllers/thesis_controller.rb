@@ -7,27 +7,41 @@ class ThesisController < ApplicationController
   end
 
   def list
+    if (request.body.read) == ""
+      render :json => {
+        "status" =>"bad request"
+      }
+    else
+      data = JSON.parse(request.body.read)
+      result = Array.new
+      if data['type'] == "thesis"
+        theses = Thesis.where("conference is null")
+      elsif data['type'] == "publication"
+        theses = Thesis.where("conference is not null")
+      else
+        theses = Thesis.all
+      end
+      theses.each do |thesis|
+        
+        teacher = Teacher.where(:id =>thesis.teacher_id).select(:name_c).first
+        student = Student.where(:id =>thesis.student_id).select(:stu_name).first
+        result.push(
+            {
+              :id => thesis.id,
+              :name_c => thesis.name_c,
+              :name_e => thesis.name_e,
+              :year => thesis.year,
+              :student_id => student.stu_name,
+              :teacher_name => teacher.name_c,
+              :conference => thesis.conference
 
-    # data = JSON.parse(request.body.read)
-    result = Array.new
-    theses = Thesis.all
-    theses.each do |thesis|
-      result.push(
-          {
-            :id => thesis.id,
-            :name_c => thesis.name_c,
-            :name_e => thesis.name_e,
-            :year => thesis.year,
-            :student_id => thesis.student_id,
-            :teacher_id => thesis.teacher_id,
-            :conference => thesis.conference
-
-          }
-        )
+            }
+          )
+      end
+      
+    render :json => result
     end
     
-    puts result.to_s
-    render :json => result
   end
 
   def create
@@ -55,6 +69,8 @@ class ThesisController < ApplicationController
 
   def detail
     thesis = Thesis.find_by_id(params[:thesisId])
+    teacher = Teacher.where(:id =>thesis.teacher_id).select(:name_c).first
+    student = Student.where(:id =>thesis.student_id).select(:stu_name).first
     if thesis.nil?
       render :json => {
                   :error => 'Bad request'
@@ -66,8 +82,8 @@ class ThesisController < ApplicationController
             :name_c => thesis.name_c,
             :name_e => thesis.name_e,
             :year => thesis.year,
-            :student_id => thesis.student_id,
-            :teacher_id => thesis.teacher_id,
+            :student_name => student.stu_name,
+            :teacher_name => teacher.name_c,
             :conference => thesis.conference
       }
 
@@ -95,7 +111,8 @@ class ThesisController < ApplicationController
       thesis.save!   
       
       render :json =>{
-        :id => thesis.id
+        :id => thesis.id,
+        :status => 'successfully updated'
       }
     end
   end
