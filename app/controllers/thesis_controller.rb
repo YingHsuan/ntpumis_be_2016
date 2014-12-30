@@ -7,41 +7,37 @@ class ThesisController < ApplicationController
   end
 
   def list
-    if (request.body.read) == ""
-      render :json => {
-        "status" =>"bad request"
-      }
-    else
-      data = JSON.parse(request.body.read)
-      result = Array.new
-      if data['type'] == "thesis"
-        theses = Thesis.where("conference is null")
-      elsif data['type'] == "publication"
-        theses = Thesis.where("conference is not null")
-      else
-        theses = Thesis.all
-      end
-      theses.each do |thesis|
-        
-        teacher = Teacher.where(:id =>thesis.teacher_id).select(:name_c).first
-        student = Student.where(:id =>thesis.student_id).select(:stu_name).first
-        result.push(
-            {
-              :id => thesis.id,
-              :name_c => thesis.name_c,
-              :name_e => thesis.name_e,
-              :year => thesis.year,
-              :student_id => student.stu_name,
-              :teacher_name => teacher.name_c,
-              :conference => thesis.conference
 
-            }
-          )
-      end
-      
-    render :json => result
+    data = JSON.parse(request.body.read)
+    puts data
+    result = Array.new
+    if data['thesis_type'] == "thesis"
+      theses = Thesis.where("conference is null")
+    elsif data['thesis_type'] == "publication"
+      theses = Thesis.where("conference is not null")
+    else
+      theses = Thesis.all
     end
-    
+    theses.each do |thesis|
+      teacher = Teacher.where(:id =>thesis.teacher_id).select(:name_c).first
+      student = Student.where(:id =>thesis.student_id).select(:stu_name).first
+      result.push(
+          {
+            :id => thesis.id,
+            :name_c => thesis.name_c,
+            :name_e => thesis.name_e,
+            :year => thesis.year,
+            :student_id => student.stu_name,
+            :teacher_name => teacher.name_c,
+            :conference => thesis.conference
+
+          }
+        )
+    end
+
+
+    render :json => result
+
   end
 
   def create
