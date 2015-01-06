@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # teacher routes
   post 'teacher/list' => 'teacher#list'
   post 'teacher/create' => 'teacher#create'
+  post 'teacher/update/:teacherId' => 'teacher#update'
+  post 'teacher/delete/:teacherId' => 'teacher#delete'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
