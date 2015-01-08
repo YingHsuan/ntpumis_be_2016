@@ -1,0 +1,10 @@
+{
+  "name": "ntpumis_be",
+  "devDependencies" : {
+    "browserify": "~> 6.3"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
+}

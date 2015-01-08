@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 # Use unicorn as the app server
 gem 'unicorn'
-
+gem "browserify-rails", "~> 0.5"
 gem 'simple_form'
 gem "kaminari"
 gem 'mysql2'

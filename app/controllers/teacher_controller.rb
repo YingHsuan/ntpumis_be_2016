@@ -1,6 +1,27 @@
 class TeacherController < ApplicationController
-  def list
+  def index
+    @teachers = Teacher.all
+  end
+  def show
+  end
+  def new
+    @teacher = Teacher.new
+  end
+  def edit
+  end
 
+  def create
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+  
+
+# API
+  def list
     data = JSON.parse(request.body.read)
     result = Array.new
     teachers = Teacher.all
@@ -47,7 +68,7 @@ class TeacherController < ApplicationController
 
   end
 
-  def create
+  def create_api
     data = JSON.parse(request.body.read)
     puts data.to_s
 
@@ -80,7 +101,7 @@ class TeacherController < ApplicationController
     render :json => result
   end
 
-  def update
+  def update_api
     teacher = Teacher.find_by_id(params[:teacherId])
     if teacher.nil?
       render :json => {
