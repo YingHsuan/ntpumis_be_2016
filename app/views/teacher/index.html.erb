@@ -1,7 +1,7 @@
 <div class="col-md-12">
 <div class="group">
-    <%= link_to("新增老師", new_teacher_path , :class => "btn btn-primary pull-right" ) %>
-  </div>
+  <a href="new"><button class="btn btn-primary pull-right">新增老師</button></a>
+</div>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -14,15 +14,13 @@
     <tbody>
       <% @teachers.each do |teacher| %>
         <tr>
-        
+
           <td><%= link_to(teacher.id, teacher_path(teacher)) %></td>
           <td><%= teacher.name_c %></td>
           <td><%= teacher.title_c %></td>
           <td><%= teacher.domain_c %></td>
           <td>
-            <%= link_to("Edit", edit_teacher_path(teacher), class: "btn btn-sm btn-default")%>
-            <%= link_to("Delete", teacher_path(teacher), class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
-          </td>
+           </td>
         </tr>
       <% end %>
     </tbody>
