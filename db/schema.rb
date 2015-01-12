@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221135042) do
+ActiveRecord::Schema.define(version: 20150112085229) do
 
   create_table "students", force: true do |t|
     t.string   "stu_no"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141221135042) do
     t.integer  "employ_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "image_url"
   end
 
   create_table "theses", force: true do |t|
