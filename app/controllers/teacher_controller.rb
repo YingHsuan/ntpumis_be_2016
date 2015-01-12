@@ -2,23 +2,7 @@ class TeacherController < ApplicationController
   def index
     @teachers = Teacher.all
   end
-  def show
-  end
-  def new
-    @teacher = Teacher.new
-  end
-  def edit
-  end
 
-  def create
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-  
 
 # API
   def list
@@ -26,7 +10,7 @@ class TeacherController < ApplicationController
     result = Array.new
     teachers = Teacher.all
     teachers.each do |teacher|
-      if data['locale'] == 'en' 
+      if data['locale'] == 'en'
         result.push(
             {
               :id => teacher.id,
@@ -40,8 +24,8 @@ class TeacherController < ApplicationController
               :email => teacher.email,
               :tel => teacher.tel,
               :extension => teacher.extension,
-              :employ_type => teacher.employ_type
-
+              :employ_type => teacher.employ_type,
+              :image_url => teacher.image_url
             }
           )
       else
@@ -58,7 +42,8 @@ class TeacherController < ApplicationController
               :email => teacher.email,
               :tel => teacher.tel,
               :extension => teacher.extension,
-              :employ_type => teacher.employ_type
+              :employ_type => teacher.employ_type,
+              :image_url => teacher.image_url
 
             }
           )
@@ -68,7 +53,7 @@ class TeacherController < ApplicationController
 
   end
 
-  def create_api
+  def create
     data = JSON.parse(request.body.read)
     puts data.to_s
 
@@ -90,9 +75,11 @@ class TeacherController < ApplicationController
       teacher.tel = data['tel']
       teacher.extension = data['extension']
       teacher.employ_type = data['employ_type']
-      teacher.save!   
+      teacher.image_url = data['image_url']
+
+      teacher.save!
     end
-    result = 
+    result =
       {
        :status => 'success',
        :id => teacher.id,
@@ -101,7 +88,7 @@ class TeacherController < ApplicationController
     render :json => result
   end
 
-  def update_api
+  def update
     teacher = Teacher.find_by_id(params[:teacherId])
     if teacher.nil?
       render :json => {
@@ -128,8 +115,9 @@ class TeacherController < ApplicationController
       teacher.tel = data['tel']
       teacher.extension = data['extension']
       teacher.employ_type = data['employ_type']
-      teacher.save!   
-      
+      teacher.image_url = data['image_url']
+      teacher.save!
+
       render :json =>{
         :id => teacher.id,
         :status => 'successfully updated'
@@ -151,5 +139,6 @@ class TeacherController < ApplicationController
       }
     end
   end
+
 
 end
