@@ -8,6 +8,7 @@ gem "browserify-rails", "~> 0.5"
 gem 'simple_form'
 gem "kaminari"
 gem 'mysql2'
+gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
