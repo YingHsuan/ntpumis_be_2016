@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :teachers
+
+  devise_for :users
+  resources :teachers, :students
   # get 'thesis/list' => 'thesis#list'
   post 'thesis/list' => 'theses#list'
   post 'thesis/create' => 'theses#create'

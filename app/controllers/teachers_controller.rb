@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
+  before_action :authenticate_user!
   require 'setting'
-
 
   def index
     @teachers = Teacher.all

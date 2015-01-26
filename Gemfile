@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 
-
+gem "devise", "~> 3.4.1", github: "plataformatec/devise", branch: "master"
 # Use unicorn as the app server
 gem 'unicorn'
 gem "browserify-rails", "~> 0.5"
-gem 'simple_form'
+gem 'simple_form', "~> 3.1.0.rc2", github: "plataformatec/simple_form", branch: "master"
 gem "kaminari"
 gem 'mysql2'
 gem 'bootstrap-sass'
