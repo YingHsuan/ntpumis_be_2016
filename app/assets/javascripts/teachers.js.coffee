@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 Teacher = require './service/teacher.js.coffee'
-
+Thesis = require './service/thesis.js.coffee'
 $(document).on('ready', ->
-  console.log 'teacher'
+
 )

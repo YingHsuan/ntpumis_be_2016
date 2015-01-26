@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li> <a> <%= link_to("教師列表", teachers_path, )%></a></li>
+    <li class="active"><%= @teacher.name_c %></li>
+  </ol>
+
+  <div class="col-md-8 col-md-offset-2">
+    <h2><%= @teacher.name_c %></h2>
+    <p></p>
+   <table class="table">
+      <tr><td>中文名稱</td><td><%= @teacher.name_c %></td></tr>
+      <tr><td>英文名稱</td><td><%= @teacher.name_e %></td></tr>
+      <tr><td>辦公室（中文）</td><td><%= @teacher.office_c %></td></tr>
+      <tr><td>辦公室英文</td><td><%= @teacher.office_e %></td></tr>
+      <tr><td>專業領域（中文）</td><td><%= simple_format(@teacher.domain_c) %></td></tr>
+      <tr><td>專業領域（英文）</td><td><%= simple_format(@teacher.domain_e) %></td></tr>
+      <tr><td>職稱</td><td><%= @title_array_c[@teacher.title_priority] %></td></tr>
+      <tr><td>圖片連結</td><td><a href ="<%= @teacher.image_url %>"><%= @teacher.image_url %></td></tr></a>
+      <tr><td>Email</td><td><%= @teacher.email %></td></tr>
+      <tr><td>電話</td><td><%= @teacher.tel %>#<%= @teacher.extension%></td></tr>
+      <tr><td>任職所長</td><td><%=  @teacher.is_chair == true ? '是' : '否' %></td></tr>
+      <tr><td>聘任狀態</td><td><%= @employ_type_array[@teacher.employ_type] %></td></tr>
+  </table>
+</div>
+</div>

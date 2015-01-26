@@ -1,4 +1,4 @@
-class TeacherController < ApplicationController
+class TeachersController < ApplicationController
   require 'setting'
 
 
@@ -22,7 +22,7 @@ class TeacherController < ApplicationController
     @teacher = Teacher.find(params[:id])
     @teacher.update(teacher_params)
 
-    redirect_to teacher_url(@teacher)
+    redirect_to :action => :show, :id => @teacher
     flash[:notice] = "成功更新老師"
 
   end
@@ -37,7 +37,7 @@ class TeacherController < ApplicationController
   def destroy
     @teacher = Teacher.find(params[:id])
     @teacher.destroy
-    redirect_to teacher_url
+    redirect_to :action => :index
     flash[:alert] = "成功刪除老師"
 
   end

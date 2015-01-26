@@ -1,4 +1,4 @@
-class ThesisController < ApplicationController
+class ThesesController < ApplicationController
 
   require 'ntpumis_logger'
 
@@ -52,9 +52,9 @@ class ThesisController < ApplicationController
       thesis.student_id = data['student_id']
       thesis.teacher_id = data['teacher_id']
       thesis.conference = data['conference']
-      thesis.save!   
+      thesis.save!
     end
-    result = 
+    result =
       {
        :status => 'success',
        :id => thesis.id,
@@ -104,8 +104,8 @@ class ThesisController < ApplicationController
       thesis.student_id = data['student_id']
       thesis.teacher_id = data['teacher_id']
       thesis.conference = data['conference']
-      thesis.save!   
-      
+      thesis.save!
+
       render :json =>{
         :id => thesis.id,
         :status => 'successfully updated'
