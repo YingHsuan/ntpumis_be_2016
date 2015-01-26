@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root :to => 'teachers#index'
   devise_for :users
   resources :teachers, :students
   # get 'thesis/list' => 'thesis#list'
