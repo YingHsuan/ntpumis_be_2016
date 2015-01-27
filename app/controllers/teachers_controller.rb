@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   require 'setting'
 
   def index
