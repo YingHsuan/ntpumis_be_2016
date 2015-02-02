@@ -1,26 +1,11 @@
 {
-  "name": "dracula",
-  "devDependencies": {
-    "browserify": "~> 4.1",
-    "jquery": "^2.1.1"
+  "name": "NTPU_MIS",
+  "devDependencies" : {
+    "browserify": "~> 6.3",
+    "coffeeify": "~> 0.6"
   },
   "license": "MIT",
   "engines": {
     "node": ">= 0.10"
-  },
-  "browserify": {
-    "transform": [
-      "coffeeify",
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "jquery": "$"
-  },
-  "dependencies": {
-    "coffeeify": "^0.7.0",
-    "bootstrap": "^3.2.0",
-    "lodash": "^2.4.1",
-    "browserify-shim": "^3.8.0"
   }
 }

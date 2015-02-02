@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-Teacher = require './service/teacher.js.coffee'
-Thesis = require './service/thesis.js.coffee'
-$(document).on('ready', ->
-
-)
+Teacher = require './service/teacher'
+Thesis = require './service/thesis'
+$(document).on 'ready', ->
+  console.log Teacher
