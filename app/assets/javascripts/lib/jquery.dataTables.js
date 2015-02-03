@@ -396,7 +396,7 @@
                  * sZeroRecords - assuming that is given.
                  */
                 if ( ! lang.sEmptyTable && zeroRecords &&
-                        defaults.sEmptyTable === "No data available in table" )
+                        defaults.sEmptyTable === "目前尚無資料" )
                 {
                         _fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
                 }
