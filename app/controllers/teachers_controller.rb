@@ -14,7 +14,7 @@ class TeachersController < ApplicationController
     @teacher.save
 
     redirect_to :action => :index
-    flash[:notice] = "成功新增老師"
+    flash[:notice] = "成功新增老師 #{@teacher.name_c}"
 
   end
 

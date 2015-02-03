@@ -1,0 +1,28 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li> <a> <%= link_to("學生列表", students_path, )%></a></li>
+    <li class="active"><%= @student.stu_name %></li>
+  </ol>
+
+  <div class="col-md-8 col-md-offset-2">
+    <h2><%= @student.stu_name %></h2>
+    <p></p>
+   <table class="table">
+      <tr><td>學號</td><td><%= @student.stu_no %></td></tr>
+      <tr><td>姓名</td><td><%= @student.stu_name %></td></tr>
+      <tr><td>學年</td><td><%= @student.grade %></td></tr>
+      <tr><td>性別</td><td><%= @student.gender ==0? "女" : "男" %></td></tr>
+      <tr><td>地址</td><td><%= @student.address %></td></tr>
+      <tr><td>電話</td><td><%= @student.tel %></td></tr>
+      <tr><td>手機</td><td><%= @student.mobile %></td></tr>
+      <tr><td>Email</td><td><%= @student.email %></td></tr>
+      <tr><td>是否畢業</td><td><%=  @student.is_graduated == true ? '是' : '否' %></td></tr>
+      <tr><td>指導老師 1</td><td><%=  Teacher.find_by_id(@student.supervisor1).nil? ? "" : Teacher.find_by_id(@student.supervisor1).name_c %></td></tr>
+      <tr><td>指導老師 2</td><td><%=  Teacher.find_by_id(@student.supervisor2).nil? ? "" : Teacher.find_by_id(@student.supervisor2).name_c%></td></tr>
+      <tr><td>任職公司</td><td><%=  @student.job_organization %></td></tr>
+      <tr><td>工作職稱</td><td><%= @student.job_title %></td></tr>
+      <tr><td>工作產業</td><td><%= @job_industry[@student.job_industry] %></td></tr>
+
+  </table>
+</div>
+</div>

@@ -1,17 +1,78 @@
+<%= javascript_include_tag 'students', 'data-turbolinks-track' => true %>
 <div class="col-md-12">
 <div class="group">
   <a><%= link_to('新增學生', new_student_path, class:'btn btn-primary pull-right')%></a>
 </div>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td>中文名字</td>
-        <td>職稱</td>
-        <td>領域</td>
-      </tr>
-    </thead>
-    <tbody>
 
-    </tbody>
-  </table>
+    <ul id="studentTab" class="nav nav-tabs">
+       <li class="active">
+          <a href="#current" data-toggle="tab">
+             在學中
+          </a>
+       </li>
+       <li><a href="#graduated" data-toggle="tab">已畢業</a></li>
+
+    </ul>
+    <div id="studentTabContend" class="tab-content">
+       <div class="tab-pane fade in active" id="current">
+         <table id="currentTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>學號</td>
+                <td>名字</td>
+                <td>學年</td>
+                <td>指導老師</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @students_current.each do |student|%>
+              <tr>
+                <td> <%= link_to(student.stu_no, student_path(student))%></td>
+                <td><%= student.stu_name %></td>
+                <td><%= student.grade %></td>
+                <td><%= Teacher.find_by_id(student.supervisor1).nil? ? "" : Teacher.find_by_id(student.supervisor1).name_c%></td>
+                <td>
+                    <%= link_to("Edit",edit_student_path(student), class: "btn btn-sm btn-default")%>
+                    <%= link_to("Delete", student_path(student), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+          </table>
+       </div>
+       <div class="tab-pane fade" id="graduated">
+          <table id="graduatedTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>學號</td>
+                <td>名字</td>
+                <td>學年</td>
+                <td>指導老師</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @students_graduated.each do |student|%>
+
+              <tr>
+                <td> <%= link_to(student.stu_no, student_path(student))%></td>
+                <td><%= student.stu_name %></td>
+                <td><%= student.grade %></td>
+                <td><%= Teacher.find_by_id(student.supervisor1).nil? ? "" : Teacher.find_by_id(student.supervisor1).name_c%></td>
+                <td>
+                    <%= link_to("Edit",edit_student_path(student), class: "btn btn-sm btn-default")%>
+                    <%= link_to("Delete", student_path(student), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+          </table>
+       </div>
+
+    </div>
 </div>
