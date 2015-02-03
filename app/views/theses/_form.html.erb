@@ -1,0 +1,92 @@
+<%= form_for @thesis  do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "論文名稱" %>
+      <%= f.text_field :name , class:"form-control", required:true %>
+      <%= f.label :conference, "研討會" %>
+      <%= f.text_field :conference , class:"form-control" %>
+      <%= f.label :year, "學年" %>
+      <%= f.number_field :year , class:"form-control",min:90, required:true %>
+      <label>學生</label>
+      <div class="input-group">
+        <input id="student_name" required type="text" class="form-control" value="<%= Student.find_by_id(@thesis.student_id).nil? ? "" : Student.find_by_id(@thesis.student_id).stu_name %>">
+          <span class="input-group-btn">
+            <a class="btn btn-info" ><span id="studentBtn">按此選擇</span></a>
+          </span> </div>
+      <%= f.hidden_field :student_id,value:@thesis.student_id %>
+      </div>
+      <%= f.label :teacher_id,"論文指導老師"%>
+      <%= f.collection_select(:teacher_id, Teacher.all, :id, :name_c, {prompt: "請選擇"}, {class: "form-control",required:true})%>
+
+    <a><%= f.submit "完成" ,class:"btn btn-primary pull-right" %></a>
+  <% end %>
+
+<div id="studentModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">選擇學生</h4>
+      </div>
+      <div class="modal-body">
+          <ul id="studentTab" class="nav nav-tabs">
+             <li class="active">
+                <a href="#current" data-toggle="tab">在學中</a>
+             </li>
+             <li><a href="#graduated" data-toggle="tab">已畢業</a></li>
+
+          </ul>
+          <div id="studentTabContent" class="tab-content">
+             <div class="tab-pane fade in active" id="current">
+                <table class="table studentTable">
+                   <thead>
+                       <th>學號</th>
+                       <th>學年</th>
+                       <th>名字</th>
+                       <th></th>
+                   </thead>
+                   <tbody>
+                    <% @students_current.each do |student|%>
+                    <tr>
+                      <td><%= student.stu_no%></td>
+                      <td><%= student.grade %></td>
+                      <td><%= student.stu_name%></td>
+                      <td><button class="studentConfirmBtn btn btn-default btn-sm" value="<%= "#{student.id} #{student.stu_name}"%>" >請選擇</button></td>
+                    </tr>
+                    <% end %>
+                   </tbody>
+                </table>
+
+             </div>
+             <div class="tab-pane fade" id="graduated">
+
+                <table class="table studentTable">
+                   <thead>
+                       <th>學號</th>
+                       <th>學年</th>
+                       <th>名字</th>
+                       <th></th>
+                   </thead>
+                   <tbody>
+                    <% @students_graduated.each do |student|%>
+                    <tr>
+                      <td><%= student.stu_no%></td>
+                      <td><%= student.grade %></td>
+                      <td><%= student.stu_name%></td>
+                      <td><button class="studentConfirmBtn btn btn-default btn-sm" value="<%= "#{student.id} #{student.stu_name}"%>" >請選擇</button></td>
+                    </tr>
+                    <% end %>
+                   </tbody>
+                </table>
+
+             </div>
+
+          </div>
+
+
+
+
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

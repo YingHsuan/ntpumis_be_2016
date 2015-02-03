@@ -1,0 +1,18 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li> <a> <%= link_to("論文列表", theses_path, )%></a></li>
+    <li class="active"><%= @thesis.name %></li>
+  </ol>
+
+  <div class="col-md-8 col-md-offset-2">
+    <h2><%= @thesis.name %></h2>
+    <p></p>
+   <table class="table">
+      <tr><td>論文名稱</td><td><%= @thesis.name %></td></tr>
+      <tr><td>學生名稱</td><td><%= Student.find_by_id(@thesis.student_id).nil? ? "" : Student.find_by_id(@thesis.student_id).stu_name %></td></tr>
+      <tr><td>老師名稱</td><td><%= Teacher.find_by_id(@thesis.teacher_id).nil? ? "" : Teacher.find_by_id(@thesis.teacher_id).name_c%></td></tr>
+      <tr><td>年份</td><td><%= @thesis.year%></td></tr>
+      <tr><td>研討會</td><td><%= @thesis.conference %></td></tr>
+     </table>
+</div>
+</div>

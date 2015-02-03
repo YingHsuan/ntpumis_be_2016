@@ -1,0 +1,78 @@
+
+<div class="col-md-12">
+<div class="group">
+  <a><%= link_to('新增論文', new_thesis_path, class:'btn btn-primary pull-right')%></a>
+</div>
+
+    <ul id="thesisTab" class="nav nav-tabs">
+       <li class="active">
+          <a href="#theses" data-toggle="tab">
+             歷屆論文
+          </a>
+       </li>
+       <li><a href="#publications" data-toggle="tab">學術創作</a></li>
+
+    </ul>
+    <div id="thesisTabContent" class="tab-content">
+       <div class="tab-pane fade in active" id="theses">
+         <table id="thesisTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>論文名稱</td>
+                <td>學生名字</td>
+                <td>學年</td>
+                <td>指導老師</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @theses.each do |thesis|%>
+              <tr>
+                <td> <%= link_to(truncate(thesis.name,:length => 40), thesis_path(thesis))%></td>
+                <td><%= Student.find_by_id(thesis.student_id).stu_name %></td>
+                <td><%= Teacher.find_by_id(thesis.teacher_id).name_c%></td>
+                <td>
+                    <%= link_to("Edit",edit_thesis_path(thesis), class: "btn btn-sm btn-default")%>
+                    <%= link_to("Delete", thesis_path(thesis), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+          </table>
+       </div>
+       <div class="tab-pane fade" id="publications">
+          <table id="publicationTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>論文名稱</td>
+                <td>學生名字</td>
+                <td>學年</td>
+                <td>指導老師</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @publications.each do |publication|%>
+
+              <tr>
+                <td> <%= link_to(truncate(publication.name,:length => 40), thesis_path(publication))%></td>
+                <td><%= Student.find_by_id(publication.student_id).stu_name %></td>
+                <td><%= Teacher.find_by_id(publication.teacher_id).name_c%></td>
+                <td>
+                    <%= link_to("Edit",edit_thesis_path(publication), class: "btn btn-sm btn-default")%>
+                    <%= link_to("Delete", thesis_path(publication), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+          </table>
+       </div>
+
+    </div>
+  </div>
+
+

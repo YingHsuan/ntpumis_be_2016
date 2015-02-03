@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   root :to => 'teachers#index'
   devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
-  resources :teachers, :students
-  # get 'thesis/list' => 'thesis#list'
+  resources :teachers, :students, :theses
+
   post 'thesis/list' => 'theses#list'
-  post 'thesis/create' => 'theses#create'
+  post 'thesis/create' => 'theses#create_api'
   post 'thesis/detail/:thesisId' => 'theses#detail'
-  post 'thesis/update/:thesisId' => 'theses#update'
+  post 'thesis/update/:thesisId' => 'theses#update_api'
   post 'thesis/delete/:thesisId' => 'theses#delete'
 
   # teacher routes
