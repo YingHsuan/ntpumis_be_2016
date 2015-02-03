@@ -30,6 +30,7 @@
               <tr>
                 <td> <%= link_to(truncate(thesis.name,:length => 40), thesis_path(thesis))%></td>
                 <td><%= Student.find_by_id(thesis.student_id).stu_name %></td>
+                <td><%= thesis.year%></td>
                 <td><%= Teacher.find_by_id(thesis.teacher_id).name_c%></td>
                 <td>
                     <%= link_to("Edit",edit_thesis_path(thesis), class: "btn btn-sm btn-default")%>
@@ -59,6 +60,7 @@
               <tr>
                 <td> <%= link_to(truncate(publication.name,:length => 40), thesis_path(publication))%></td>
                 <td><%= Student.find_by_id(publication.student_id).stu_name %></td>
+                <td><%= publication.year%></td>
                 <td><%= Teacher.find_by_id(publication.teacher_id).name_c%></td>
                 <td>
                     <%= link_to("Edit",edit_thesis_path(publication), class: "btn btn-sm btn-default")%>
@@ -75,4 +77,4 @@
     </div>
   </div>
 
-
+<%= javascript_include_tag 'theses', 'data-turbolinks-track' => true %>

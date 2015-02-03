@@ -14,3 +14,4 @@ $(document).on 'ready', ->
     $('#studentModal').modal('hide')
 
   $('.studentTable').dataTable()
+  $('#thesisTable,#publicationTable').dataTable()
