@@ -1,0 +1,38 @@
+<%= form_for @student  do |f| %>
+    <div class="form-group">
+      <%= f.label :stu_no, "學號" %>
+      <%= f.text_field :stu_no , class:"form-control", required:true %>
+      <%= f.label :stu_name, "姓名" %>
+      <%= f.text_field :stu_name , class:"form-control", required:true %>
+      <%= f.label :grade, "學年" %>
+      <%= f.number_field :grade , class:"form-control",min:90, required:true %>
+      <%= f.label :gender, "性別" %>
+      <%= f.select "gender", options_for_select([['女', 0], ['男', 1]],@student.gender), {:include_blank=>'請選擇'}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+
+
+      <%= f.label :address, "地址" %>
+      <%= f.text_field :address , class:"form-control" %>
+      <%= f.label :tel, "電話" %>
+      <%= f.text_field :tel , class:"form-control" %>
+      <%= f.label :mobile, "手機" %>
+      <%= f.text_field :mobile , class:"form-control" %>
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email , class:"form-control" %>
+      <%= f.label :supervisor1,"指導老師 1"%>
+      <%= f.collection_select(:supervisor1, Teacher.all, :id, :name_c, {prompt: "請選擇"}, {class: "form-control"})%>
+      <%= f.label :supervisor2,"指導老師 2"%>
+      <%= f.collection_select(:supervisor2, Teacher.all, :id, :name_c, {prompt: "請選擇"}, {class: "form-control"})%>
+      <%= f.label :is_graduated, "是否畢業" %>
+      <%= f.select "is_graduated", options_for_select([['是', true], ['否', false]],@student.is_graduated), {:include_blank=>'請選擇'}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+      <%= f.label :job_organization, "任職公司" %>
+      <%= f.text_field :job_organization , class:"form-control" %>
+      <%= f.label :job_title, "工作職稱" %>
+      <%= f.text_field :job_title , class:"form-control" %>
+      <%= f.label :job_industry, "工作產業" %>
+      <%= f.select "job_industry",options_for_select(@job_industry.map{|job,key| [key, job]},@student.job_industry)  , {:include_blank=>'請選擇'}, { autofocus: 'true', class: 'form-control'} %>
+
+
+    </div>
+    <a><%= f.submit "完成" ,class:"btn btn-primary pull-right" %></a>
+  <% end %>
+
