@@ -26,12 +26,12 @@
               </tr>
             </thead>
             <tbody>
-            <% @students_current.each do |student|%>
+            <% @students_current.each_with_index do |student,idx|%>
               <tr>
                 <td> <%= link_to(student.stu_no, student_path(student))%></td>
                 <td><%= student.stu_name %></td>
                 <td><%= student.grade %></td>
-                <td><%= Teacher.find_by_id(student.supervisor1).nil? ? "" : Teacher.find_by_id(student.supervisor1).name_c%></td>
+                <td><%= @supervisor1_name_c[idx].nil? ? "" : @supervisor1_name_c[idx]%></td>
                 <td>
                     <%= link_to("Edit",edit_student_path(student), class: "btn btn-sm btn-default")%>
                     <%= link_to("Delete", student_path(student), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
@@ -55,13 +55,13 @@
               </tr>
             </thead>
             <tbody>
-            <% @students_graduated.each do |student|%>
+            <% @students_graduated.each_with_index do |student,idx|%>
 
               <tr>
                 <td> <%= link_to(student.stu_no, student_path(student))%></td>
                 <td><%= student.stu_name %></td>
                 <td><%= student.grade %></td>
-                <td><%= Teacher.find_by_id(student.supervisor1).nil? ? "" : Teacher.find_by_id(student.supervisor1).name_c%></td>
+                <td><%= @supervisor1_name_g[idx].nil? ? "" : @supervisor1_name_g[idx]%></td>
                 <td>
                     <%= link_to("Edit",edit_student_path(student), class: "btn btn-sm btn-default")%>
                     <%= link_to("Delete", student_path(student), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>

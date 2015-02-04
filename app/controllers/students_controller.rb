@@ -25,8 +25,40 @@ class StudentsController < ApplicationController
 
   }
   def index
-    @students_current = Student.where("is_graduated = ?",false).order(grade: :desc)
-    @students_graduated = Student.where("is_graduated = ?",true).order(grade: :desc)
+    students_current = Student.where("is_graduated = ?",false).order(grade: :desc)
+    students_graduated = Student.where("is_graduated = ?",true).order(grade: :desc)
+    teachers = Teacher.all
+    supervisor1_name_c = []
+    supervisor1_name_g = []
+
+    students_current.each do |s|
+      if s.supervisor1.nil?
+        supervisor1_name_c << ""
+      else
+        teachers.each do |t|
+          if s.supervisor1 == t.id
+            supervisor1_name_c << t.name_c
+          end
+        end
+      end
+    end
+
+    students_graduated.each do |s|
+      if s.supervisor1.nil?
+        supervisor1_name_g << ""
+      else
+        teachers.each do |t|
+          if s.supervisor1 == t.id
+            supervisor1_name_g << t.name_c
+          end
+        end
+      end
+    end
+
+    @supervisor1_name_c = supervisor1_name_c
+    @supervisor1_name_g = supervisor1_name_g
+    @students_current = students_current
+    @students_graduated = students_graduated
   end
   def new
     @job_industry = JSON.parse(JSON[JOB_INDUSTRY])
