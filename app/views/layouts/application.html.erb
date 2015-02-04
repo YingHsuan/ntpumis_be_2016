@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'lib/jquery.dataTables', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'lib/dataTables.bootstrap', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
 </head>
@@ -17,7 +17,14 @@
   <%= yield %>
 </div>
   <%= render "common/footer" %>
-
+ <div id="loading" style="display:none">
+      <div class="shadow"></div>
+      <div class="spinner">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+      </div>
+      <div class="loading-text"></div>
+  </div>
 
 </body>
 </html>

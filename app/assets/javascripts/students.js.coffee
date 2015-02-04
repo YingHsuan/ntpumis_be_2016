@@ -4,5 +4,8 @@
 
 
 $(document).on 'ready', ->
+  $('#loading').hide()
   console.log 'student'
+
   $('#currentTable,#graduatedTable').dataTable()
+  $('select').addClass('form-control')

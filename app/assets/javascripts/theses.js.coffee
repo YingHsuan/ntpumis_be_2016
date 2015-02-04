@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'ready', ->
+  $('#loading').hide()
   $('#student_name').on 'focus', ->
     $(@).blur()
   $('#studentBtn').on 'click', ->
@@ -15,3 +16,4 @@ $(document).on 'ready', ->
 
   $('.studentTable').dataTable()
   $('#thesisTable,#publicationTable').dataTable()
+  $('select').addClass('form-control')

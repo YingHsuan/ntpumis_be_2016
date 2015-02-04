@@ -5,4 +5,5 @@
 Teacher = require './service/teacher'
 Thesis = require './service/thesis'
 $(document).on 'ready', ->
+  $('#loading').hide()
   console.log Teacher
