@@ -16,7 +16,7 @@ class ThesesController < ApplicationController
   def edit
     @students_current = Student.where("is_graduated = ?",false).order(grade: :desc)
     @students_graduated = Student.where("is_graduated = ?",true).order(grade: :desc)
-
+    @student_name = Student.find_by_id(@thesis.student_id).stu_name
   end
   def create
     @thesis = Thesis.new(thesis_params)
@@ -33,6 +33,9 @@ class ThesesController < ApplicationController
     flash[:notice] = "成功更新論文 #{@thesis.name}"
   end
   def show
+    @student_name = Student.find_by_id(@thesis.student_id).stu_name
+    @supervisor1 = Teacher.find_by_id(@thesis.supervisor1).name_c
+    @supervisor2 = Teacher.find_by_id(@thesis.supervisor2).nil? ? "" : Teacher.find_by_id(@thesis.supervisor2)
   end
   def destroy
     @thesis.destroy
@@ -54,7 +57,7 @@ class ThesesController < ApplicationController
       theses = Thesis.all
     end
     theses.each do |thesis|
-      teacher = Teacher.where(:id =>thesis.teacher_id).select(:name_c).first
+      teacher = Teacher.where(:id =>thesis.supervisor1).select(:name_c).first
       student = Student.where(:id =>thesis.student_id).select(:stu_name).first
       result.push(
           {
@@ -83,7 +86,7 @@ class ThesesController < ApplicationController
       thesis.name = data['name']
       thesis.year = data['year']
       thesis.student_id = data['student_id']
-      thesis.teacher_id = data['teacher_id']
+      thesis.supervisor1 = data['supervisor1']
       thesis.conference = data['conference']
       thesis.save!
     end
@@ -98,7 +101,7 @@ class ThesesController < ApplicationController
 
   def detail
     thesis = Thesis.find_by_id(params[:thesisId])
-    teacher = Teacher.where(:id =>thesis.teacher_id).select(:name_c).first
+    teacher = Teacher.where(:id =>thesis.supervisor1).select(:name_c).first
     student = Student.where(:id =>thesis.student_id).select(:stu_name).first
     if thesis.nil?
       render :json => {
@@ -133,7 +136,7 @@ class ThesesController < ApplicationController
       thesis.name = data['name']
       thesis.year = data['year']
       thesis.student_id = data['student_id']
-      thesis.teacher_id = data['teacher_id']
+      thesis.supervisor1 = data['supervisor1']
       thesis.conference = data['conference']
       thesis.save!
 
@@ -160,7 +163,7 @@ class ThesesController < ApplicationController
   end
   private
   def thesis_params
-    params.require(:thesis).permit(:name,:student_id, :year, :teacher_id,:conference)
+    params.require(:thesis).permit(:name,:student_id, :year, :supervisor1, :supervisor2,:conference)
   end
   def find_thesis
     @thesis = Thesis.find(params[:id])

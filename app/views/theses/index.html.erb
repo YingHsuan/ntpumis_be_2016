@@ -31,7 +31,7 @@
                 <td> <%= link_to(truncate(thesis.name,:length => 40), thesis_path(thesis))%></td>
                 <td><%= Student.find_by_id(thesis.student_id).stu_name %></td>
                 <td><%= thesis.year%></td>
-                <td><%= Teacher.find_by_id(thesis.teacher_id).name_c%></td>
+                <td><%= Teacher.find_by_id(thesis.supervisor1).name_c%></td>
                 <td>
                     <%= link_to("Edit",edit_thesis_path(thesis), class: "btn btn-sm btn-default")%>
                     <%= link_to("Delete", thesis_path(thesis), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
@@ -61,7 +61,7 @@
                 <td> <%= link_to(truncate(publication.name,:length => 40), thesis_path(publication))%></td>
                 <td><%= Student.find_by_id(publication.student_id).stu_name %></td>
                 <td><%= publication.year%></td>
-                <td><%= Teacher.find_by_id(publication.teacher_id).name_c%></td>
+                <td><%= Teacher.find_by_id(publication.supervisor1).name_c%></td>
                 <td>
                     <%= link_to("Edit",edit_thesis_path(publication), class: "btn btn-sm btn-default")%>
                     <%= link_to("Delete", thesis_path(publication), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>

@@ -9,8 +9,8 @@
     <p></p>
    <table class="table">
       <tr><td>論文名稱</td><td><%= @thesis.name %></td></tr>
-      <tr><td>學生名稱</td><td><%= Student.find_by_id(@thesis.student_id).nil? ? "" : Student.find_by_id(@thesis.student_id).stu_name %></td></tr>
-      <tr><td>老師名稱</td><td><%= Teacher.find_by_id(@thesis.teacher_id).nil? ? "" : Teacher.find_by_id(@thesis.teacher_id).name_c%></td></tr>
+      <tr><td>學生名稱</td><td><%= @student_name %></td></tr>
+      <tr><td>老師名稱</td><td><%= "#{@supervisor1} #{@supervisor2}"%></td></tr>
       <tr><td>年份</td><td><%= @thesis.year%></td></tr>
       <tr><td>研討會</td><td><%= @thesis.conference %></td></tr>
      </table>
