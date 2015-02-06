@@ -1,23 +1,23 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: ntpumis_be
+  database: ntpumis_development
   host: 104.236.83.32
-  username: root
-  password: 1qaz2wsx
+  username: ntpumis
+  password: ntpumis2015
 
 test:
   adapter: mysql2
   encoding: utf8
-  database: ntpumis_test
+  database: ntpumis_development
   host: 104.236.83.32
-  username: root
-  password: 1qaz2wsx
+  username: ntpumis
+  password: ntpumis2015
 
 production:
   adapter: mysql2
   encoding: utf8
   database: ntpumis_be
   host: 104.236.83.32
-  username: root
-  password: 1qaz2wsx
+  username: ntpumis
+  password: ntpumis2015
