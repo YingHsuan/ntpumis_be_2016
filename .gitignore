@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 public
+/config/database.yml
 node_modules
