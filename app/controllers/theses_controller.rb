@@ -60,6 +60,7 @@ class ThesesController < ApplicationController
     end
     theses.each do |thesis|
       teacher = Teacher.where(:id =>thesis.supervisor1).select(:name_c).first
+      teacher2 = Teacher.where(:id =>thesis.supervisor2).select(:name_c).first
       student = Student.where(:id =>thesis.student_id).select(:stu_name).first
       result.push(
           {
@@ -67,7 +68,7 @@ class ThesesController < ApplicationController
             :name => thesis.name,
             :year => thesis.year,
             :student_id => student.stu_name,
-            :teacher_name => teacher.name_c,
+            :teacher_name => "#{teacher.name_c} #{teacher2.nil? ? "" : teacher2.name_c}",
             :conference => thesis.conference
 
           }
