@@ -22,6 +22,5 @@ module NtpumisBe
     #config.encoding = "utf-8"
     #config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     #config.assets.precompile += [/.*\.js/,/.*\.css/]
-    config.browserify_rails.commandline_options = "-t coffeeify --extension=\".js.coffee\""
   end
 end
