@@ -1,6 +1,8 @@
 class ThesesController < ApplicationController
 
   require 'ntpumis_logger'
+
+  before_action :authenticate_user!, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   before_action :find_thesis, only:[:edit,:update, :show, :destroy]
   def index
     @theses = Thesis.where("conference =''")
