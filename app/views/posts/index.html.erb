@@ -1,0 +1,52 @@
+
+<div class="col-md-12">
+<div class="group">
+  <a><%= link_to('新增公告', new_post_path, class:'btn btn-primary pull-right')%></a>
+</div>
+
+    <ul id="postsTab" class="nav nav-tabs">
+       <li class="active">
+          <a href="#general" data-toggle="tab">所務公告</a>
+       </li>
+       <li><a href="#conference" data-toggle="tab">學術公告</a></li>
+       <li><a href="#alumni" data-toggle="tab">所友會公告</a></li>
+
+    </ul>
+    <div id="studentTabContend" class="tab-content">
+       <div class="tab-pane fade in active" id="general">
+        general
+       <table id="generalTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>標題</td>
+                <td>建立時間</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @posts.each do |post|%>
+              <tr>
+                <td> <%= link_to(post.id, post_path(post))%></td>
+                <td><%= post.title %></td>
+                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                <td>
+                    <%= link_to("Edit",edit_post_path(post), class: "btn btn-sm btn-default")%>
+                    <%= link_to("Delete", post_path(post), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+       <div class="tab-pane fade" id="conference">
+        conference
+       </div>
+       <div class="tab-pane fade" id="alumni">
+        alumni
+       </div>
+    </div>
+  </div>
+
