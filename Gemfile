@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem 'ckeditor'
 gem "devise", "~> 3.4.1", github: "plataformatec/devise", branch: "master"
 # Use unicorn as the app server
 gem 'unicorn'

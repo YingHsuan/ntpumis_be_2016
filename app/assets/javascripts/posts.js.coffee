@@ -10,7 +10,6 @@ $(document).on 'ready', ->
     autoclose: true
     startDate:new Date()
     clearBtn : true
-  CKEDITOR.replace 'post_description'
   $('#post_end_date').on 'click', ->
     $(@).blur()
 
