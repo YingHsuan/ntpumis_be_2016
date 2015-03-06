@@ -23,10 +23,20 @@ class PostsController < ApplicationController
   end
   def show
   end
+  def update
+    @post.update(post_params)
+
+    redirect_to :action => :show, :id=>@post
+    flash[:notice] = "成功更新公告 #{@post.title}"
+
+  end
   def edit
     @post_type = JSON.parse(JSON[POST_TYPE])
   end
   def destroy
+    @post.destroy
+    redirect_to :action => :index
+    flash[:alert] = "成功刪除公告 #{@post.title}"
   end
 
   private
