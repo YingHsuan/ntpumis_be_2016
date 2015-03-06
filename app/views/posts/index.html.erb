@@ -14,25 +14,24 @@
     </ul>
     <div id="studentTabContend" class="tab-content">
        <div class="tab-pane fade in active" id="general">
-        general
        <table id="generalTable" class="table table-hover">
             <thead>
               <tr>
-                <td>#</td>
                 <td>標題</td>
+                <td>到期時間</td>
                 <td>建立時間</td>
                 <td></td>
               </tr>
             </thead>
             <tbody>
-            <% @posts.each do |post|%>
+            <% @posts_general.each do |post|%>
               <tr>
-                <td> <%= link_to(post.id, post_path(post))%></td>
-                <td><%= post.title %></td>
+                <td> <%= link_to(post.title, post_path(post))%></td>
+                <td><%= post.end_date.nil? ? "永久有效" : post.end_date.strftime("%Y/%m/%d")%></td>
                 <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
                 <td>
-                    <%= link_to("Edit",edit_post_path(post), class: "btn btn-sm btn-default")%>
-                    <%= link_to("Delete", post_path(post), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+                    <%= link_to("編輯",edit_post_path(post), class: "btn btn-sm btn-default")%>
+                    <%= link_to("刪除", post_path(post), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
 
                 </td>
               </tr>
@@ -42,11 +41,60 @@
         </table>
       </div>
        <div class="tab-pane fade" id="conference">
-        conference
-       </div>
+       <table id="conferenceTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>標題</td>
+                <td>到期時間</td>
+                <td>建立時間</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @posts_conference.each do |post|%>
+              <tr>
+                <td> <%= link_to(post.title, post_path(post))%></td>
+                <td><%= post.end_date.nil? ? "永久有效" : post.end_date.strftime("%Y/%m/%d")%></td>
+                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                <td>
+                    <%= link_to("編輯",edit_post_path(post), class: "btn btn-sm btn-default")%>
+                    <%= link_to("刪除", post_path(post), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+        </table>
+      </div>
        <div class="tab-pane fade" id="alumni">
-        alumni
-       </div>
+       <table id="alumniTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>標題</td>
+                <td>到期時間</td>
+                <td>建立時間</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @posts_alumni.each do |post|%>
+              <tr>
+                <td> <%= link_to(post.title, post_path(post))%></td>
+                <td><%= post.end_date.nil? ? "永久有效" : post.end_date.strftime("%Y/%m/%d")%></td>
+                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                <td>
+                    <%= link_to("編輯",edit_post_path(post), class: "btn btn-sm btn-default")%>
+                    <%= link_to("刪除", post_path(post), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+
+              <% end %>
+            </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
+<%= javascript_include_tag 'posts/index', 'data-turbolinks-track' => true %>

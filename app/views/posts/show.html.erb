@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li> <a> <%= link_to("公告列表", posts_path, )%></a></li>
+    <li class="active"><%= @post.title %></li>
+  </ol>
+
+  <div class="col-md-8 col-md-offset-2">
+    <h2><%= @post.title%></h2>
+    <p></p>
+   <table class="table">
+      <tr><td>標題</td><td><%= @post.title %></td></tr>
+      <tr><td>公告類型</td><td><%= @post_type[@post.post_type] %></td></tr>
+      <tr><td>結束日期</td><td><%= @post.end_date.nil? ? "永久有效" : @post.end_date.strftime("%Y/%m/%d") %></td></tr>
+      <tr><td>建立日期</td><td><%= @post.created_at.strftime("%Y/%m/%d") %></td></tr>
+      <tr><td>附件連結</td><td><a target="_blank" href="<%= @post.download_link %>"><%= @post.download_link %></td></tr>
+      <tr><td>內容</td><td><%= raw @post.description %></td></tr>
+  </table>
+</div>
+</div>

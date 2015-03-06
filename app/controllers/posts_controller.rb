@@ -8,7 +8,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-
+    @posts_general = Post.where("post_type = ?","general").order(created_at: :desc)
+    @posts_conference = Post.where("post_type = ?","conference").order(created_at: :desc)
+    @posts_alumni = Post.where("post_type = ?","alumni").order(created_at: :desc)
   end
   def new
     @post = Post.new
@@ -22,6 +24,7 @@ class PostsController < ApplicationController
     flash[:notice] = "成功新增公告 #{@post.title}"
   end
   def show
+    @post_type = JSON.parse(JSON[POST_TYPE])
   end
   def update
     @post.update(post_params)

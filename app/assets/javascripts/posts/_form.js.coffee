@@ -12,6 +12,7 @@ $(document).on 'ready', ->
     clearBtn : true
   $('#post_end_date').on 'click', ->
     $(@).blur()
+  $('table').dataTable()
 
 
 
