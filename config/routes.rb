@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   post 'teacher/update/:teacherId' => 'teachers#update_api'
   post 'teacher/delete/:teacherId' => 'teachers#delete'
 
+  # post routes
+  post 'posts/list' => 'posts#list'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

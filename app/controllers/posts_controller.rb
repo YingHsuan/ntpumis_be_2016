@@ -7,7 +7,6 @@ class PostsController < ApplicationController
   }
 
   def index
-    @posts = Post.all
     @posts_general = Post.where("post_type = ?","general").order(created_at: :desc)
     @posts_conference = Post.where("post_type = ?","conference").order(created_at: :desc)
     @posts_alumni = Post.where("post_type = ?","alumni").order(created_at: :desc)
@@ -42,6 +41,27 @@ class PostsController < ApplicationController
     flash[:alert] = "成功刪除公告 #{@post.title}"
   end
 
+  #API
+  def list
+    result = Array.new
+    posts = Post.all
+    posts.each do |post|
+      result.push(
+        {
+          :id => post.id,
+          :title => post.title,
+          :description => post.description,
+          :description_text => post.description.gsub(/<.*?>/, ""),
+          :post_type => post.post_type,
+          :end_date => post.end_date,
+          :download_link => post.download_link,
+          :created_at => post.created_at
+
+        }
+      )
+    end
+    render :json => result
+  end
   private
   def post_params
     params.require(:post).permit(:title,:description,:post_type,:end_date,:download_link)
