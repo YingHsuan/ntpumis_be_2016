@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require ckeditor/init
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.js
