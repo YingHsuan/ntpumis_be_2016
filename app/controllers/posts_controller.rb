@@ -53,9 +53,9 @@ class PostsController < ApplicationController
           :description => post.description,
           :description_text => post.description.gsub(/<.*?>/, ""),
           :post_type => post.post_type,
-          :end_date => post.end_date,
+          :end_date => post.end_date.nil? ? post.end_date : post.end_date.strftime("%Y/%m/%d"),
           :download_link => post.download_link,
-          :created_at => post.created_at
+          :created_at => post.created_at.strftime("%Y/%m/%d")
 
         }
       )
