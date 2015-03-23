@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   #API
   def list
     result = Array.new
-    posts = Post.all
+    posts = Post.all.order('created_at DESC')
     posts.each do |post|
       result.push(
         {
