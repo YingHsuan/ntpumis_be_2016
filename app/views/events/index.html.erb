@@ -1,0 +1,45 @@
+
+<div class="col-md-12">
+<div class="group">
+  <a><%= link_to('新增活動', new_event_path, class:'btn btn-primary pull-right')%></a>
+</div>
+
+    <ul id="postsTab" class="nav nav-tabs">
+       <li class="active">
+          <a href="#domestic" data-toggle="tab">所上活動</a>
+       </li>
+       <li><a href="#lecture" data-toggle="tab">專題演講</a></li>
+
+    </ul>
+    <div id="domesticTabContent" class="tab-content">
+       <div class="tab-pane fade in active" id="domestic">
+       <table id="domesticTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>標題</td>
+                <td>到期時間</td>
+                <td>建立時間</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+      </div>
+       <div class="tab-pane fade" id="lecture">
+       <table id="lectureTable" class="table table-hover">
+            <thead>
+              <tr>
+                <td>標題</td>
+                <td>到期時間</td>
+                <td>建立時間</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

@@ -1,0 +1,18 @@
+<%= form_for @event do |f| %>
+  <div class="form-group" >
+      <%= f.label :title, "標題" %>
+      <%= f.text_field :title , class:"form-control", required:true %>
+      <%= f.label :event_type, "活動類型" %>
+      <%= f.select "event_type",options_for_select(@event_type.map{|val,key| [key, val]},@event.event_type)  , {:include_blank=>'請選擇'}, {required: 'true' , autofocus: 'true', class: 'form-control'} %>
+      <%= f.label :content, "活動內容" %>
+      <%= f.cktext_area :content, :class=> "form-control", :ckeditor =>{:language=> 'zh-TW'}%>
+      <%= f.label :start_time, "活動開始日期" %>
+      <%= f.text_field :start_time , class:"form-control"%>
+      <%= f.label :end_time, "活動結束日期" %>
+      <%= f.text_field :end_time , class:"form-control"%>
+      <%= f.label :location, "地點" %>
+      <%= f.text_field :location , class:"form-control"%>
+  </div>
+
+    <a><%= f.submit "完成" ,class:"btn btn-primary pull-right" %></a>
+<% end %>
