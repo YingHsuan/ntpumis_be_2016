@@ -71,7 +71,8 @@ class EventsController < ApplicationController
           :event_type => EVENT_TYPE.as_json[e.event_type],
           :start => e.start_time.strftime("%Y/%m/%d %H:%M"),
           :end => e.end_time.strftime("%Y/%m/%d %H:%M"),
-          :created_at => e.created_at.strftime("%Y/%m/%d")
+          :created_at => e.created_at.strftime("%Y/%m/%d"),
+          :location => e.location
         }
 
 
