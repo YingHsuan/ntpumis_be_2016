@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   require 'ntpumis_logger'
+  before_action :authenticate_user!, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   before_action :find_event, only:[:edit, :show, :update, :destroy]
   EVENT_TYPE ={
     :domestic => "所上活動",

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   require 'ntpumis_logger'
+  before_action :authenticate_user!, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   before_action :find_post, only:[:edit, :show, :update, :destroy]
   POST_TYPE = {
     :general => "所務公告",
