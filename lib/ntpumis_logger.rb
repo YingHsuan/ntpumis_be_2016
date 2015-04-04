@@ -1,4 +1,4 @@
-class NTPU_MIS_Logger
+class NTPUMIS_Logger
 
   LOG_DEBUG = 1   # 除錯用的訊息，Production環境會忽略
   LOG_INFO = 2    # 值得記錄的一般訊息
@@ -44,7 +44,7 @@ class NTPU_MIS_Logger
 
 
   def self.print_to_console(msg)
-    puts msg.to_s
+    puts "[#{DateTime.now()}] #{msg.to_s}"
   end
 
 

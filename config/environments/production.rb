@@ -67,6 +67,8 @@ Rails.application.configure do
     'teachers.js',
     'theses.js',
     'lib/jquery.dataTable.js',
+    'events/*.js',
+    'posts/*.js',
 
     'application.css',
     'students.css',

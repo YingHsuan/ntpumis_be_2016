@@ -17,7 +17,8 @@ Rails.application.routes.draw do
 
   # post routes
   post 'posts/list' => 'posts#list'
-
+  # event routes
+  post 'events/list' => 'events#list'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

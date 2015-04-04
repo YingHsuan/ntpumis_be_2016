@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   before_action :find_student, only:[:edit, :show, :update, :destroy]
-
+  require 'ntpumis_logger'
   JOB_INDUSTRY = {
     :A => "農、林、漁、牧業",
     :B => "礦業及土石採取業",
@@ -25,6 +25,7 @@ class StudentsController < ApplicationController
 
   }
   def index
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     students_current = Student.where("is_graduated = ?",false).order(grade: :desc)
     students_graduated = Student.where("is_graduated = ?",true).order(grade: :desc)
     teachers = Teacher.all
@@ -61,10 +62,12 @@ class StudentsController < ApplicationController
     @students_graduated = students_graduated
   end
   def new
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @job_industry = JSON.parse(JSON[JOB_INDUSTRY])
     @student = Student.new
   end
   def create
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @student = Student.new(student_params)
     @student.save
 
@@ -72,19 +75,23 @@ class StudentsController < ApplicationController
     flash[:notice] = "成功新增學生 #{@student.stu_name}"
   end
   def edit
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @job_industry = JSON.parse(JSON[JOB_INDUSTRY])
 
   end
   def update
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @student.update(student_params)
 
     redirect_to :action => :show, :id => @student
     flash[:notice] = "成功更新學生 #{@student.stu_name}"
   end
   def show
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @job_industry = JSON.parse(JSON[JOB_INDUSTRY])
   end
   def destroy
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @student.destroy
     redirect_to :action => :index
     flash[:alert] = "成功刪除學生 #{@student.stu_name}"

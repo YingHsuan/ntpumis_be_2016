@@ -1,15 +1,18 @@
 class TeachersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   require 'setting'
-
+  require 'ntpumis_logger'
   def index
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teachers = Teacher.all
     @title_array_c = Setting::TEACHER_TITLE_ARRAY_C
   end
   def new
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teacher = Teacher.new
   end
   def create
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teacher =  Teacher.new(teacher_params)
     @teacher.save
 
@@ -19,6 +22,7 @@ class TeachersController < ApplicationController
   end
 
   def update
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teacher = Teacher.find(params[:id])
     @teacher.update(teacher_params)
 
@@ -27,14 +31,17 @@ class TeachersController < ApplicationController
 
   end
   def show
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teacher = Teacher.find(params[:id])
     @employ_type_array = Setting::TEACHER_EMPLOY_TYPE
     @title_array_c = Setting::TEACHER_TITLE_ARRAY_C
   end
   def edit
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teacher = Teacher.find(params[:id])
   end
   def destroy
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     @teacher = Teacher.find(params[:id])
     @teacher.destroy
     redirect_to :action => :index
@@ -44,6 +51,7 @@ class TeachersController < ApplicationController
 # API
   def list
 
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     data = JSON.parse(request.body.read)
     result = Array.new
     title_array_c = Setting::TEACHER_TITLE_ARRAY_C
@@ -94,6 +102,7 @@ class TeachersController < ApplicationController
   end
 
   def create_api
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     data = JSON.parse(request.body.read)
     puts data.to_s
 
@@ -127,6 +136,7 @@ class TeachersController < ApplicationController
   end
 
   def update_api
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     teacher = Teacher.find_by_id(params[:teacherId])
     if teacher.nil?
       render :json => {
@@ -161,6 +171,7 @@ class TeachersController < ApplicationController
     end
   end
   def delete
+    NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
     teacher = Teacher.find_by_id(params[:teacherId])
     if teacher.nil?
       render :json => {

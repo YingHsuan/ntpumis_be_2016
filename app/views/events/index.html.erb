@@ -17,12 +17,26 @@
             <thead>
               <tr>
                 <td>標題</td>
-                <td>到期時間</td>
+                <td>活動起始時間</td>
+                <td>活動結束時間</td>
                 <td>建立時間</td>
                 <td></td>
               </tr>
             </thead>
             <tbody>
+            <% @events_domestic.each do |e|%>
+              <tr>
+                <td> <%= link_to(e.title, event_path(e))%></td>
+                <td><%= e.start_time.strftime("%Y/%m/%d %H:%M")%></td>
+                <td><%= e.end_time.strftime("%Y/%m/%d %H:%M")%></td>
+                <td><%= e.created_at.strftime("%Y/%m/%d") %></td>
+                <td>
+                    <%= link_to("編輯",edit_event_path(e), class: "btn btn-sm btn-default")%>
+                    <%= link_to("刪除", event_path(e), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+              <% end %>
             </tbody>
         </table>
       </div>
@@ -31,15 +45,30 @@
             <thead>
               <tr>
                 <td>標題</td>
-                <td>到期時間</td>
+                <td>活動起始時間</td>
+                <td>活動結束時間</td>
                 <td>建立時間</td>
                 <td></td>
               </tr>
             </thead>
             <tbody>
+            <% @events_lecture.each do |e|%>
+              <tr>
+                <td> <%= link_to(e.title, event_path(e))%></td>
+                <td><%= e.start_time.strftime("%Y/%m/%d %H:%M")%></td>
+                <td><%= e.end_time.strftime("%Y/%m/%d %H:%M")%></td>
+                <td><%= e.created_at.strftime("%Y/%m/%d") %></td>
+                <td>
+                    <%= link_to("編輯",edit_event_path(e), class: "btn btn-sm btn-default")%>
+                    <%= link_to("刪除", event_path(e), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+
+                </td>
+              </tr>
+              <% end %>
             </tbody>
         </table>
       </div>
     </div>
   </div>
 
+<%= javascript_include_tag 'events/index', 'data-turbolinks-track' => true %>
