@@ -1,0 +1,13 @@
+<%= form_for @download do |f| %>
+  <div class="form-group col-md-12" >
+      <%= f.label :title, "標題" %>
+      <%= f.text_field :title , class:"form-control", required:true %>
+      <%= f.label :file_type, "檔案類型" %>
+      <%= f.select "file_type",options_for_select(@download_type.map{|val,key| [key, val]},@download.file_type)  , {:include_blank=>'請選擇'}, {required: 'true' , autofocus: 'true', class: 'form-control'} %>
+       <%= f.label :link, "檔案連結" %>
+       <%= f.text_field :link , class:"form-control", required:true %>
+
+  </div>
+
+    <a><%= f.submit "完成" ,class:"btn btn-primary pull-right" %></a>
+<% end %>
