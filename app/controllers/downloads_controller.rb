@@ -6,7 +6,8 @@ class DownloadsController < ApplicationController
   DOWNLOAD_TYPE={
     :enrollment => "招生簡介",
     :newspaper => "資管所通訊",
-    :examination => "歷屆考題"
+    :examination => "歷屆考題",
+    :domestic => "常用表單"
   }
 
   def index
@@ -14,6 +15,7 @@ class DownloadsController < ApplicationController
     @downloads_enrollment = []
     @downloads_newspaper = []
     @downloads_examination = []
+    @downloads_domestic = []
     downloads = Download.order("created_at DESC").all
     downloads.each do |d|
       if d.file_type == "enrollment"
@@ -22,6 +24,8 @@ class DownloadsController < ApplicationController
         @downloads_newspaper << d
       elsif d.file_type == "examination"
         @downloads_examination << d
+      elsif d.file_type == "domestic"
+        @downloads_domestic << d
       end
     end
   end
@@ -38,7 +42,7 @@ class DownloadsController < ApplicationController
     @download.save
 
     redirect_to :action => :index
-    flash[:notice] = "成功新增連結 #{@download.title}"
+    flash[:notice] = "成功新增連結 [#{DOWNLOAD_TYPE.as_json[@download.file_type]}] #{@download.title}"
   end
 
   def edit
@@ -51,7 +55,7 @@ class DownloadsController < ApplicationController
     @download.update(download_params)
 
     redirect_to :action => :index
-    flash[:notice] = "成功更新連結 #{@download.title}" 
+    flash[:notice] = "成功更新連結  [#{DOWNLOAD_TYPE.as_json[@download.file_type]}] #{@download.title}" 
   end
 
   def destroy
@@ -68,6 +72,7 @@ class DownloadsController < ApplicationController
     enrollment_arr = []
     newspaper_arr=[]
     examination_arr=[]
+    domestic_arr=[]
     downloads = Download.order('created_at').all
     downloads.each do |d|
       if d.file_type == "enrollment"
@@ -76,13 +81,16 @@ class DownloadsController < ApplicationController
       	newspaper_arr << d
       elsif d.file_type == "examination"
       	examination_arr << d 
+      elsif d.file_type == "domestic"
+      	domestic_arr << d
       end
     end
     result .push(
         {
           :enrollment => enrollment_arr,
           :newspaper => newspaper_arr,
-          :examination => examination_arr
+          :examination => examination_arr,
+          :domestic => domestic_arr
         }
     )
     render :json => result
