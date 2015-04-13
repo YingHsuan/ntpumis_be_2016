@@ -55,7 +55,7 @@ class DownloadsController < ApplicationController
     @download.update(download_params)
 
     redirect_to :action => :index
-    flash[:notice] = "成功更新連結  [#{DOWNLOAD_TYPE.as_json[@download.file_type]}] #{@download.title}" 
+    flash[:notice] = "成功更新連結  [#{DOWNLOAD_TYPE.as_json[@download.file_type]}] #{@download.title}"
   end
 
   def destroy
@@ -68,7 +68,6 @@ class DownloadsController < ApplicationController
 
   def list
     NTPUMIS_Logger.log(NTPUMIS_Logger::LOG_INFO, "#{self.controller_name}##{self.action_name}", nil)
-    result = Array.new
     enrollment_arr = []
     newspaper_arr=[]
     examination_arr=[]
@@ -76,23 +75,22 @@ class DownloadsController < ApplicationController
     downloads = Download.order('created_at').all
     downloads.each do |d|
       if d.file_type == "enrollment"
-      	enrollment_arr << d
+        enrollment_arr << d
       elsif d.file_type == "newspaper"
-      	newspaper_arr << d
+        newspaper_arr << d
       elsif d.file_type == "examination"
-      	examination_arr << d 
+        examination_arr << d
       elsif d.file_type == "domestic"
-      	domestic_arr << d
+        domestic_arr << d
       end
     end
-    result .push(
-        {
+    result={
           :enrollment => enrollment_arr,
           :newspaper => newspaper_arr,
           :examination => examination_arr,
           :domestic => domestic_arr
         }
-    )
+
     render :json => result
   end
 
